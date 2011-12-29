@@ -62,10 +62,10 @@ public class QuickMuteActivity extends PreferenceActivity {
 
 		Intent intent = getIntent();
 		String key;
+		SharedPreferences pref = PreferenceManager
+				.getDefaultSharedPreferences(context);
 		switch (intent.getIntExtra("mode", 0)) {
 			case MODE_CHANGE_MUTE:
-				SharedPreferences pref = PreferenceManager
-						.getDefaultSharedPreferences(context);
 				SharedPreferences.Editor editor = pref.edit();
 				key = getString(R.string.key_muted);
 				isMuted = !pref.getBoolean(key, false);
@@ -87,7 +87,11 @@ public class QuickMuteActivity extends PreferenceActivity {
 					checkbox = (CheckBoxPreference) findPreference(key);
 					checkbox.setOnPreferenceChangeListener(checkboxListener);
 				}
-				setNotification();
+
+				if (pref.getBoolean(getString(R.string.key_stay_notification),
+						true)) {
+					setNotification();
+				}
 				break;
 		}
 	}
