@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="key_muted">muted</string>
+    <string name="key_ring">ring</string>
+    <string name="key_ring_volume">ring_volume</string>
+    <string name="key_notification">notification</string>
+    <string name="key_notification_volume">notification_volume</string>
+    <string name="key_alarm">alarm</string>
+    <string name="key_alarm_volume">alarm_volume</string>
+    <string name="key_music">music</string>
+    <string name="key_music_volume">music_volume</string>
+    <string name="key_system">system</string>
+    <string name="key_system_volume">system_volume</string>
+    <string name="key_stay_notification">stay_notification</string>
+</resources>

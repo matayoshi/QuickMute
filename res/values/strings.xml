@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Quick Mute</string>
+    <string name="mute">ミュート</string>
+    <string name="muted">音は鳴りません</string>
+    <string name="no_muted">音は鳴ります</string>
+    <string name="choice_mute">ミュートにするものを選んで下さい</string>
+    <string name="ring">着信音</string>
+    <string name="notification">通知音</string>
+    <string name="alarm">アラーム</string>
+    <string name="music">音楽(ゲーム音など)</string>
+    <string name="system">システム音</string>
+    <string name="change_mute">ミュートにします</string>
+    <string name="change_unmute">ミュートを解除します</string>
+    <string name="stay_notification">通知領域に常駐</string>
+    <string name="staied_notification">通知領域に常駐します</string>
+    <string name="no_stay_notification">通知領域に常駐しません</string>
+</resources>
