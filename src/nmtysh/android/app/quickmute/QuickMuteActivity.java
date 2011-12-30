@@ -44,6 +44,7 @@ import android.preference.PreferenceManager;
 public class QuickMuteActivity extends PreferenceActivity {
 	private Context context = null;
 	private boolean isMuted = false;
+	private boolean isStayNotification = true;
 	private NotificationManager nManager;
 	private AudioManager aManager;
 
@@ -64,6 +65,8 @@ public class QuickMuteActivity extends PreferenceActivity {
 		String key;
 		SharedPreferences pref = PreferenceManager
 				.getDefaultSharedPreferences(context);
+		isStayNotification = pref.getBoolean(getString(R.string.key_stay_notification),
+				true);
 		switch (intent.getIntExtra("mode", 0)) {
 			case MODE_CHANGE_MUTE:
 				SharedPreferences.Editor editor = pref.edit();
@@ -71,6 +74,7 @@ public class QuickMuteActivity extends PreferenceActivity {
 				isMuted = !pref.getBoolean(key, false);
 				editor.putBoolean(key, isMuted);
 				editor.commit();
+
 				setMute(isMuted);
 				setNotification();
 				finish();
@@ -88,10 +92,7 @@ public class QuickMuteActivity extends PreferenceActivity {
 					checkbox.setOnPreferenceChangeListener(checkboxListener);
 				}
 
-				if (pref.getBoolean(getString(R.string.key_stay_notification),
-						true)) {
-					setNotification();
-				}
+				setNotification();
 				break;
 		}
 	}
@@ -117,11 +118,8 @@ public class QuickMuteActivity extends PreferenceActivity {
 				setMute(isMuted);
 				setNotification();
 			} else if (key.equals(getString(R.string.key_stay_notification))) {
-				if ((Boolean) newValue) {
-					setNotification();
-				} else {
-					unsetNotification();
-				}
+				isStayNotification = (Boolean) newValue;
+				setNotification();
 			} else {
 				return false;
 			}
@@ -177,6 +175,11 @@ public class QuickMuteActivity extends PreferenceActivity {
 
 	// 通知領域に表示
 	private void setNotification() {
+		if (!isStayNotification) {
+			unsetNotification();
+			return;
+		}
+
 		Intent nintent = new Intent(context, QuickMuteActivity.class);
 		nintent.putExtra("mode", MODE_CHANGE_MUTE);
 		PendingIntent contentIntent = PendingIntent.getActivity(context, 0,
